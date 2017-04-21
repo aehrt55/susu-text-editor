@@ -68,6 +68,7 @@ module.exports = {
     publicPath: publicPath
   },
   resolve: {
+    modulesDirectories: ["modules", "node_modules"],
     // This allows you to set a fallback for where Webpack should look for modules.
     // We read `NODE_PATH` environment variable in `paths.js` and pass paths here.
     // We use `fallback` instead of `root` because we want `node_modules` to "win"
@@ -93,7 +94,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
-        include: paths.appSrc
+        include: [paths.appSrc, paths.appModules],
       }
     ],
     loaders: [
@@ -122,7 +123,7 @@ module.exports = {
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
-        include: paths.appSrc,
+        include: [paths.appSrc, paths.appModules],
         loader: 'babel',
         
       },
@@ -142,7 +143,7 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(
           'style',
-          'css?importLoaders=1!postcss',
+          'css?importLoaders=1&modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss',
           extractTextPluginOptions
         )
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
