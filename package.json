@@ -53,6 +53,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "lib": "node node_modules/babel-cli/bin/babel modules --out-dir lib --copy-files",
+    "prepublish": "npm run lib",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
