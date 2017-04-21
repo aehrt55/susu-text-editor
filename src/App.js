@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Editor from 'susu-text-editor';
 import logo from './logo.svg';
 import styles from './App.css';
 
@@ -11,7 +12,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <p className={styles.intro}>
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {Editor}
         </p>
       </div>
     );
