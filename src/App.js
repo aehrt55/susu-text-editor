@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Editor from 'susu-text-editor';
-import 'draft-js-blocks/blocksStyle.css';
 import logo from './logo.svg';
 import styles from './App.css';
 import data from './data';
