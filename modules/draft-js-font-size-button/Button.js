@@ -33,7 +33,7 @@ export default class Button extends Component {
     isVisible: PropTypes.bool.isRequired,
   };
   static defaultProps = {
-    defaultStyle: 'FontSize-16',
+    defaultStyle: convertToStyle('16'),
     options: defaultOptions,
   };
   state = {
