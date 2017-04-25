@@ -9,6 +9,12 @@ import DraftJsPluginsEditor from '@sususite/draft-js-plugins-editor';
 import { blockStyleFn } from '../draft-js-blocks';
 import createInlineToolbarPlugin from '../draft-js-inline-toolbar-plugin';
 import Buttons from '../draft-js-buttons';
+import FontSizeButton, { customStyleFn as fontSizeStyleFn } from '../draft-js-font-size-button';
+
+const customStyleFn = (inlineStyle) => Object.assign(
+  {},
+  fontSizeStyleFn(inlineStyle)
+);
 
 export default class TextEditor extends Component {
   static propTypes = {
@@ -18,6 +24,7 @@ export default class TextEditor extends Component {
   constructor(props) {
     super(props);
     const buttons = [
+      FontSizeButton,
       Buttons.Alignment,
       Buttons.Bold,
       Buttons.Italic,
@@ -72,6 +79,7 @@ export default class TextEditor extends Component {
           ref={(editor) => { this.editor = editor; }}
           plugins={plugins}
           blockStyleFn={blockStyleFn}
+          customStyleFn={customStyleFn}
         />
         <InlineToolbar />
       </div>
