@@ -1,0 +1,22 @@
+.dropdown {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.option {
+  display: block;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 54px;
+  text-align: center;
+  background-color: rgba(0,0,0, .7);
+  transition-property: background-color;
+  transition-duration: .25s;
+  box-sizing: border-box
+}
+.option:hover {
+  background-color: rgba(0,0,0, 1);
+}

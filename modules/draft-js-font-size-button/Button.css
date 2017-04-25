@@ -1,0 +1,20 @@
+.wrapper {
+  color: #fff;
+  display: inline-flex;
+  height: 40px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 55px;
+}
+
+.arrow {
+  fill: #fff;
+  transform: scale(.9);
+}
+
+.fontSizeDisplay {
+  pointer-events: none;
+  margin-right: 5px;
+}
