@@ -5,7 +5,7 @@ import preventBubblingUp from './utils/preventBubblingUp';
 import styles from './Button.css';
 
 const Button = ({ name, children, onClick, isActive }) => (
-  <div className={styles.buttonWrapper} onMouseDown={preventBubblingUp} data-name={name}>
+  <div className={styles.wrapper} onMouseDown={preventBubblingUp} data-name={name}>
     <div
       className={classNames(styles.button, {
         [styles.active]: isActive,

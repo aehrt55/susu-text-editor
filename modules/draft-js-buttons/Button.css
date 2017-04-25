@@ -1,9 +1,9 @@
-.buttonWrapper {
+.wrapper {
   flex: 0 0 40px;
   position: relative;
 }
 /* tooltip start */
-.buttonWrapper:before {
+.wrapper:before {
   opacity: 0;
   content: " "attr(data-name)" ";
   display: inline-block;
@@ -23,7 +23,7 @@
   background-color: rgba(0,0,0,.7);
   pointer-events: none;
 }
-.buttonWrapper:after {
+.wrapper:after {
   content: "";
   width: 0;
   height: 0;
@@ -36,8 +36,8 @@
   top: -7px;
   opacity: 0;
 }
-.buttonWrapper:hover:before,
-.buttonWrapper:hover:after {
+.wrapper:hover:before,
+.wrapper:hover:after {
   opacity: 1;
 }
 /* tooltip end */
