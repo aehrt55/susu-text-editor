@@ -10,9 +10,11 @@ import { blockStyleFn } from '../draft-js-blocks';
 import createInlineToolbarPlugin from '../draft-js-inline-toolbar-plugin';
 import Buttons from '../draft-js-buttons';
 import FontSizeButton, { customStyleFn as fontSizeStyleFn } from '../draft-js-font-size-button';
+import ColorButton, { customStyleFn as colorStyleFn } from '../draft-js-color-button';
 
 const customStyleFn = (inlineStyle) => Object.assign(
   {},
+  colorStyleFn(inlineStyle),
   fontSizeStyleFn(inlineStyle)
 );
 
@@ -25,6 +27,7 @@ export default class TextEditor extends Component {
     super(props);
     const buttons = [
       FontSizeButton,
+      ColorButton,
       Buttons.Alignment,
       Buttons.Bold,
       Buttons.Italic,
