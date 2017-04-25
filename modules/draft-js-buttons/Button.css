@@ -1,0 +1,71 @@
+.buttonWrapper {
+  flex: 0 0 40px;
+  position: relative;
+}
+/* tooltip start */
+.buttonWrapper:before {
+  opacity: 0;
+  content: " "attr(data-name)" ";
+  display: inline-block;
+  position: absolute;
+  line-height: 1;
+  top: -29px;
+  left: 50%;
+  margin-left: -33px;
+  padding: 5px 0;
+  transition-property: opacity;
+  transition-duration: .3s;
+  min-width: 66px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 3px;
+  background-color: rgba(0,0,0,.7);
+  pointer-events: none;
+}
+.buttonWrapper:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid rgba(0,0,0,.7);
+  position: absolute;
+  left: 50%;
+  margin-left: -2px;
+  top: -7px;
+  opacity: 0;
+}
+.buttonWrapper:hover:before,
+.buttonWrapper:hover:after {
+  opacity: 1;
+}
+/* tooltip end */
+
+.button {
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  transition-property: background-color;
+  transition-duration: .25s;
+}
+.button:hover,
+.button:focus {
+  outline: 0;
+}
+.active {
+  background-color: #2b98f0;
+}
+
+.svg {
+  fill: #fff;
+  transition: fill .3s;
+}
+.svg:hover {
+  fill: #2b98f0;
+}
+.activeSvg:hover {
+  fill: #000;
+}
