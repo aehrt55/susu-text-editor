@@ -39,18 +39,11 @@ export default class Toolbar extends Component {
   render() {
     const { getItem, updateItem } = this.props.store;
     const isVisible = getItem('isVisible');
-    const toolbarStyle = {
-      transform: `scale(${isVisible ? 1 : 0})`,
-      visibility: `${isVisible ? 'visible' : 'hidden'}`,
-    };
-    const forceVisible = () => {
-      updateItem('forceVisible', true);
-      updateItem('selectionRect', getVisibleSelectionRect(window));
-    };
-    const resumeVisible = () => {
-      updateItem('forceVisible', false);
-    };
-    if (isVisible || getItem('forceVisible')) {
+    const forceVisible = getItem('forceVisible');
+    const toolbarStyle = {};
+    if (isVisible || forceVisible) {
+      toolbarStyle.transform = 'scale(1)';
+      toolbarStyle.visibility = 'visible';
       const editorRect = getItem('getEditorRef')().refs.editor.getBoundingClientRect();
       const selectionRect = isVisible ? getVisibleSelectionRect(window) : getItem('selectionRect');
       if (selectionRect.top - toolbarHeight < 0) {
@@ -74,8 +67,13 @@ export default class Toolbar extends Component {
             setEditorState={this.setEditorState}
             getEditorRef={getItem('getEditorRef')}
             isVisible={isVisible}
-            forceVisible={forceVisible}
-            resumeVisible={resumeVisible}
+            forceVisible={() => {
+              updateItem('forceVisible', true);
+              updateItem('selectionRect', getVisibleSelectionRect(window));
+            }}
+            resumeVisible={() => {
+              updateItem('forceVisible', false);
+            }}
           />
         ))}
       </div>
