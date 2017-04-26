@@ -65,8 +65,6 @@ export default class Toolbar extends Component {
             getEditorState={this.getEditorState}
             setEditorState={this.setEditorState}
             isVisible={isVisible}
-            subscribeVisibilityChange={(callback) => subscribe('isVisible', callback)}
-            unSubscribeVisibilityChange={(callback) => unSubscribe('isVisible', callback)}
           />
         ))}
       </div>
