@@ -10,11 +10,6 @@
   cursor: pointer;
 }
 
-.hyperLink {
-  width: 30px;
-  height: 30px;
-}
-
 .inputWrapper {
   position: absolute;
   top: 0;
@@ -24,7 +19,10 @@
   visibility: hidden;
   pointer-events: none;
   display: flex;
+  background-color: #3E3E3E;
+  border-radius: 3px;
 }
+
 .activeInputWrapper {
   visibility: visible;;
   pointer-events: auto;
@@ -35,7 +33,15 @@
   height: 100%;
   box-sizing: border-box;
   margin: 0;
-  font-size: 16px;
+  padding: 0 8px;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1;
+  background-color: transparent;
+  border: none;
+  background-image: none;
+  box-shadow: none;
+  color: #ffffff;
 }
 
 .xWrap,
@@ -45,8 +51,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 1);
   cursor: pointer;
+}
+
+.xWrap:hover svg,
+.checkWrap:hover svg {
+  fill: #2b98f0;
 }
 
 .x,
@@ -55,15 +65,23 @@
   transition: fill .3s;
   /*pointer-events: none;*/
 }
-.x:hover,
-.check:hover {
-  fill: #2b98f0;
-}
+
 .x {
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
 }
+
 .check {
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::-webkit-input-placeholder,
+.input::-moz-placeholder,
+.input:-ms-input-placeholder {
+  color: #aaa;
 }
