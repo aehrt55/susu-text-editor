@@ -64,6 +64,7 @@ export default class Toolbar extends Component {
             key={index}
             getEditorState={this.getEditorState}
             setEditorState={this.setEditorState}
+            getEditorRef={getItem('getEditorRef')}
             isVisible={isVisible}
           />
         ))}
