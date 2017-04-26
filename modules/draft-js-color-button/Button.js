@@ -42,8 +42,6 @@ export default class Button extends Component {
   handleToggleButton = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(event, event.target);
-    console.log(this.button);
     if (event.target !== this.button) {
       return;
     }
