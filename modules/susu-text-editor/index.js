@@ -11,6 +11,7 @@ import createInlineToolbarPlugin from '../draft-js-inline-toolbar-plugin';
 import Buttons from '../draft-js-buttons';
 import FontSizeButton, { customStyleFn as fontSizeStyleFn } from '../draft-js-font-size-button';
 import ColorButton, { customStyleFn as colorStyleFn } from '../draft-js-color-button';
+import LinkButton from '../draft-js-link-button';
 
 const customStyleFn = (inlineStyle) => Object.assign(
   {},
@@ -34,6 +35,7 @@ export default class TextEditor extends Component {
       Buttons.Underline,
       Buttons.Strike,
       Buttons.Heading,
+      LinkButton,
     ];
     const inlineToolbarPlugin = createInlineToolbarPlugin({ buttons });
     this.plugins = {

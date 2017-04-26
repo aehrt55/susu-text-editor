@@ -13,7 +13,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div style={{ textAlign: 'left' }}>
-          <Editor data={data} />
+          <Editor data={data} onChange={(editorState) => console.log(editorState)} />
         </div>
       </div>
     );
