@@ -24,11 +24,11 @@ export default class Toolbar extends Component {
   shouldComponentUpdate() {
     const selectionRect = getVisibleSelectionRect(window);
     const onSelectionChange = () => {
-      document.removeEventListener("selectionchange", onSelectionChange);
+      document.removeEventListener('selectionchange', onSelectionChange);
       this.forceUpdate();
     };
     if (selectionRect === null) {
-      document.addEventListener("selectionchange", onSelectionChange);
+      document.addEventListener('selectionchange', onSelectionChange);
       return false;
     } else {
       return true;
