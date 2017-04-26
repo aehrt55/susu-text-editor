@@ -38,7 +38,7 @@ export default class Button extends Component {
     if (!isClose && this.inputWrapper.contains(event.target)) {
       return;
     }
-    document.querySelector('body').removeEventListener('click', this.closeInput, true);
+    document.querySelector('body').removeEventListener('onmousedown', this.closeInput, true);
     this.props.resumeVisible();
     this.setState((prevState) => ({ ...prevState, toggle: false }));
     this.props.getEditorRef().focus();
@@ -49,7 +49,7 @@ export default class Button extends Component {
     event.preventDefault();
     event.stopPropagation();
     this.props.forceVisible();
-    document.querySelector('body').addEventListener('click', this.closeInput, true);
+    document.querySelector('body').addEventListener('onmousedown', this.closeInput, true);
     const selection = this.props.getEditorState().getSelection();
     this.setState((prevState) => ({ ...prevState, toggle: true, selection }));
   };
