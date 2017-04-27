@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import { getVisibleSelectionRect } from 'draft-js';
 import styles from './Toolbar.css';
 
-// todo: make toolbarHeight to be determined or a parameter
-const toolbarHeight = 42;
-const toolbarWidth = 300;
-
 export default class Toolbar extends Component {
   static propTypes = {
     store: PropTypes.shape({
@@ -15,6 +11,8 @@ export default class Toolbar extends Component {
       subscribe: PropTypes.func.isRequired,
     }).isRequired,
     buttons: PropTypes.arrayOf(PropTypes.func).isRequired,
+    toolbarHeight: PropTypes.number,
+    toolbarWidth: PropTypes.number,
   };
   componentWillMount() {
     this.props.store.subscribe('isVisible', this.onVisibilityChange);
@@ -41,6 +39,8 @@ export default class Toolbar extends Component {
     const isVisible = getItem('isVisible');
     const forceVisible = getItem('forceVisible');
     const toolbarStyle = {};
+    const toolbarWidth = this.props.toolbarWidth || (this.props.buttons.length * 40);
+    const toolbarHeight = this.props.toolbarHeight || 40;
     if (isVisible || forceVisible) {
       toolbarStyle.transform = 'scale(1)';
       toolbarStyle.visibility = 'visible';

@@ -10,6 +10,8 @@ const createInlineToolbarPlugin = (config = {}) => {
   const {
     buttons = [Alignment, Bold, Italic, Underline, Strike, Heading],
     Toolbar = DefaultToolbar,
+    toolbarWidth,
+    toolbarHeight,
   } = config;
   return {
     initialize: ({ getEditorState, setEditorState, getEditorRef }) => {
@@ -27,7 +29,7 @@ const createInlineToolbarPlugin = (config = {}) => {
       }
       return editorState;
     },
-    InlineToolbar: decorateComponentWithProps(Toolbar, { store, buttons }),
+    InlineToolbar: decorateComponentWithProps(Toolbar, { store, buttons, toolbarWidth, toolbarHeight }),
   };
 };
 

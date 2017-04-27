@@ -37,7 +37,11 @@ export default class TextEditor extends Component {
       Buttons.Heading,
       LinkButton,
     ];
-    const inlineToolbarPlugin = createInlineToolbarPlugin({ buttons });
+    const inlineToolbarPlugin = createInlineToolbarPlugin({
+      buttons,
+      toolbarWidth: 375,
+      toolbarHeight: 40,
+    });
     this.plugins = {
       inlineToolbarPlugin,
     };
