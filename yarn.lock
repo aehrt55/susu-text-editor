@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@sususite/draft-js-plugins-editor@2.0.0-beta11":
-  version "2.0.0-beta11"
-  resolved "https://registry.yarnpkg.com/@sususite/draft-js-plugins-editor/-/draft-js-plugins-editor-2.0.0-beta11.tgz#7e6260573acd149d68020f82e3f0b5bd8a9dc3b8"
+"@sususite/draft-js-plugins-editor@^2.0.0-beta12":
+  version "2.0.0-beta12"
+  resolved "https://registry.yarnpkg.com/@sususite/draft-js-plugins-editor/-/draft-js-plugins-editor-2.0.0-beta12.tgz#1bd70b5765ca32f40736217630642d6f30bbc3b2"
   dependencies:
     decorate-component-with-props "^1.0.2"
     draft-js ">=0.9.1"
