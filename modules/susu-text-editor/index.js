@@ -11,7 +11,7 @@ import createInlineToolbarPlugin from '../draft-js-inline-toolbar-plugin';
 import Buttons from '../draft-js-buttons';
 import FontSizeButton, { customStyleFn as fontSizeStyleFn } from '../draft-js-font-size-button';
 import ColorButton, { customStyleFn as colorStyleFn } from '../draft-js-color-button';
-import LinkButton from '../draft-js-link-button';
+import LinkButton, { Decorator as LinkDecorator } from '../draft-js-link-button';
 
 const customStyleFn = (inlineStyle) => Object.assign(
   {},
@@ -75,6 +75,7 @@ export default class TextEditor extends Component {
       this.props.onChange(convertToRaw(this.state.editorState.getCurrentContent()));
     }
   }
+  onEditorMount = (editor) => { this.editor = editor; window.editor = editor; };
   render() {
     const { InlineToolbar } = this.plugins.inlineToolbarPlugin;
     const plugins = Object.values(this.plugins);
@@ -85,10 +86,11 @@ export default class TextEditor extends Component {
           onChange={this.handleChange}
           onBlur={this.handleBlur}
           readOnly={this.props.readOnly}
-          ref={(editor) => { this.editor = editor; }}
+          ref={this.onEditorMount}
           plugins={plugins}
           blockStyleFn={blockStyleFn}
           customStyleFn={customStyleFn}
+          decorators={[LinkDecorator]}
         />
         <InlineToolbar />
       </div>
