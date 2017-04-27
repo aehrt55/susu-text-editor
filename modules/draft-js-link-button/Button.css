@@ -63,7 +63,7 @@
 .check {
   fill: white;
   transition: fill .3s;
-  /*pointer-events: none;*/
+  pointer-events: none;
 }
 
 .x {

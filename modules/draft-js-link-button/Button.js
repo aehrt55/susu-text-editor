@@ -24,78 +24,89 @@ const X = (props) => (
 );
 /* eslint-enable */
 
+const onMouseDown = (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+};
+
 export default class Button extends Component {
   static propTypes = {
     forceVisible: PropTypes.func.isRequired,
     resumeVisible: PropTypes.func.isRequired,
   };
   state = {
+    input: '',
     toggle: false,
   };
-  closeInput = (event, isClose) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!isClose && this.inputWrapper.contains(event.target)) {
+  closeInput = (event) => {
+    if (this.input === event.target) {
       return;
     }
-    document.querySelector('body').removeEventListener('onmousedown', this.closeInput, true);
+    document.querySelector('body').removeEventListener('mousedown', this.closeInput, true);
+    const url = this.input.value.trim();
+    this.input.value = '';
+    const editorState = EditorState.acceptSelection(
+      this.props.getEditorState(),
+      this.state.selection.set('hasFocus', true)
+    );
+    this.props.getEditorRef().refs.editor.focus();
+    if (this.check === event.target && url) {
+      const content = editorState.getCurrentContent()
+      .createEntity('LINK', 'MUTABLE', { url });
+      const entityKey = content.getLastCreatedEntityKey();
+      this.props.setEditorState(RichUtils.toggleLink(
+        EditorState.set(editorState, { currentContent: content }),
+        this.state.selection,
+        entityKey
+      ));
+    } else {
+      this.props.setEditorState(editorState);
+    }
     this.props.resumeVisible();
     this.setState((prevState) => ({ ...prevState, toggle: false }));
-    this.props.getEditorRef().focus();
-    const editorState = EditorState.forceSelection(this.props.getEditorState(), this.state.selection);
-    this.props.setEditorState(editorState);
   };
   openInput = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    this.props.forceVisible();
-    document.querySelector('body').addEventListener('onmousedown', this.closeInput, true);
+    onMouseDown(event);
     const selection = this.props.getEditorState().getSelection();
+    this.props.forceVisible();
+    document.querySelector('body').addEventListener('mousedown', this.closeInput, true);
     this.setState((prevState) => ({ ...prevState, toggle: true, selection }));
   };
   onInputWrapperMount = (inputWrapper) => { this.inputWrapper = inputWrapper; };
   onInputMount = (input) => { this.input = input; };
+  onCheckMount = (check) => { this.check = check; };
   render() {
-    const { getEditorState, setEditorState } = this.props;
-    const setLink = () => {
-      const url = this.input.value.trim();
-      this.input.value = '';
-      if (!url) {
-        return;
-      }
-      const editorState = EditorState.forceSelection(getEditorState(), this.state.selection);
-      const content = editorState.getCurrentContent();
-      const newContent = content.createEntity(
-        'LINK',
-        'IMMUTABLE',
-        { url }
-      );
-      const newEditorState = EditorState.set(editorState, { currentContent: newContent });
-      const entityKey = newContent.getLastCreatedEntityKey();
-      const _newEditorState = RichUtils.toggleLink(
-        newEditorState,
-        this.state.selection,
-        entityKey
-      );
-      setEditorState(_newEditorState);
-    };
+    const editorState = this.props.getEditorState();
+    const selection = editorState.getSelection();
+    const content = editorState.getCurrentContent();
+    const entityKey = content.getBlockForKey(selection.getStartKey())
+    .getEntityAt(selection.getStartOffset());
+    const entity = entityKey ? content.getEntity(entityKey) : null;
+    const isActive = entity ? (entity.getType() === 'LINK') : false;
+    const defaultValue = entity ? entity.getData().url : '';
+    if (this.input) {
+      this.input.value = defaultValue;
+    }
     return (
       <div className={styles.group}>
         <div
-          className={classNames(buttonStyles.wrapper, styles.wrapper)}
+          className={classNames(buttonStyles.wrapper, styles.wrapper, {
+            [buttonStyles.active]: isActive,
+          })}
           onMouseDown={this.openInput}
           data-name="超鏈結"
         >
-          <HyperLink className={buttonStyles.svg} />
+          <HyperLink
+            className={classNames(buttonStyles.svg, {
+              [buttonStyles.activeSvg]: isActive,
+            })}
+          />
         </div>
         <div
           className={classNames(styles.inputWrapper, {
             [styles.activeInputWrapper]: this.state.toggle,
           })}
           ref={this.onInputWrapperMount}
-          onMouseDown={(event) => {
-            event.stopPropagation();
-          }}
         >
           <input
             className={styles.input}
@@ -104,16 +115,12 @@ export default class Button extends Component {
           />
           <div
             className={styles.checkWrap}
-            onMouseDown={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              setLink();
-              this.closeInput(event, true);
-            }}
+            ref={this.onCheckMount}
+            onMouseDown={onMouseDown}
           >
             <Check className={styles.check} />
           </div>
-          <div className={styles.xWrap} onMouseDown={(event) => this.closeInput(event, true)}>
+          <div className={styles.xWrap} onMouseDown={onMouseDown}>
             <X className={styles.x} />
           </div>
         </div>
