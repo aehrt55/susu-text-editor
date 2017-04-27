@@ -45,7 +45,7 @@ export default class Toolbar extends Component {
       toolbarStyle.transform = 'scale(1)';
       toolbarStyle.visibility = 'visible';
       const editorRect = getItem('getEditorRef')().refs.editor.getBoundingClientRect();
-      const selectionRect = isVisible ? getVisibleSelectionRect(window) : getItem('selectionRect');
+      const selectionRect = getVisibleSelectionRect(window) || getItem('selectionRect');
       if (selectionRect.top - toolbarHeight < 0) {
         toolbarStyle.bottom = editorRect.bottom - selectionRect.bottom - toolbarHeight;
       } else {
