@@ -8,4 +8,4 @@ const Decorator = {
 };
 
 export default Button;
-export { Decorator };
+export { Decorator, findLinkEntities, Link };
