@@ -1,7 +1,7 @@
 export default from './susu-text-editor';
-export Blocks from './draft-js-blocks';
-export Buttons from './draft-js-buttons';
-export ColorButton from './draft-js-color-button';
-export FontSizeButton from './draft-js-font-size-button';
-export InlineToolbarPlugin from './draft-js-inline-toolbar-plugin';
-export LinkButton from './draft-js-link-button';
+export * as Blocks from './draft-js-blocks';
+export * as Buttons from './draft-js-buttons';
+export * as ColorButton from './draft-js-color-button';
+export * as FontSizeButton from './draft-js-font-size-button';
+export * as InlineToolbarPlugin from './draft-js-inline-toolbar-plugin';
+export * as LinkButton from './draft-js-link-button';
