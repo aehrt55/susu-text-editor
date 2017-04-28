@@ -12,7 +12,7 @@ const draft = {
       ],
       depth: 0,
       type: 'header-one',
-      'text' : '這是一段內容文字，寫點東西吧！ ',
+      text : '這是一段內容文字，寫點東西吧！ ',
     },
     {
       data: {},
@@ -40,7 +40,7 @@ const draft = {
       ],
       depth: 0,
       type: 'unstyled',
-      'text' : ' - Steve Jobs',
+      text : ' - Steve Jobs',
     },
   ],
   entityMap: {},
