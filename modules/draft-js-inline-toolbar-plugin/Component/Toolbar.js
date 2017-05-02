@@ -24,16 +24,31 @@ export default class Toolbar extends Component {
     const selectionRect = getVisibleSelectionRect(window);
     const onSelectionChange = () => {
       document.removeEventListener('selectionchange', onSelectionChange);
+      this.props.store.updateItem('selectionRect', getVisibleSelectionRect(window));
       this.forceUpdate();
     };
     if (selectionRect === null) {
       document.addEventListener('selectionchange', onSelectionChange);
       return false;
     } else {
+      this.props.store.updateItem('selectionRect', selectionRect);
       return true;
     }
   }
-  onVisibilityChange = () => this.forceUpdate();
+  onVisibilityChange = () => {
+    const selectionRect = getVisibleSelectionRect(window);
+    const onSelectionChange = () => {
+      document.removeEventListener('selectionchange', onSelectionChange);
+      this.props.store.updateItem('selectionRect', getVisibleSelectionRect(window));
+      this.forceUpdate();
+    };
+    if (selectionRect === null) {
+      document.addEventListener('selectionchange', onSelectionChange);
+    } else {
+      this.props.store.updateItem('selectionRect', selectionRect);
+      this.forceUpdate();
+    }
+  };
   render() {
     const { getItem, updateItem } = this.props.store;
     const isVisible = getItem('isVisible');

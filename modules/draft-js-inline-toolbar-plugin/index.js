@@ -23,7 +23,7 @@ const createInlineToolbarPlugin = (config = {}) => {
     onChange: (editorState) => {
       const selection = editorState.getSelection();
       if (selection.getHasFocus() && !selection.isCollapsed()) {
-        store.updateItem('isVisible', true);
+        store.updateItem('isVisible', true, true);
       } else {
         store.updateItem('isVisible', false);
       }
