@@ -1,6 +1,6 @@
 {
   "name": "@sususite/susu-text-editor",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "lib/index.js",
   "dependencies": {
     "@sususite/draft-js-plugins-editor": "^2.0.0-beta12",
