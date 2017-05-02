@@ -8,6 +8,4 @@ const blockStyleFn = (contentBlock) => {
   });
 }
 
-const Blocks = { blockStyleFn }
-
-export default Blocks;
+export { blockStyleFn };
