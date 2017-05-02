@@ -17,8 +17,6 @@ export default class Toolbar extends Component {
   componentWillMount() {
     this.props.store.subscribe('isVisible', this.onVisibilityChange);
     this.props.store.subscribe('forceVisible', this.onVisibilityChange);
-    this.getEditorState = this.props.store.getItem('getEditorState');
-    this.setEditorState = this.props.store.getItem('setEditorState');
   }
   shouldComponentUpdate() {
     const selectionRect = getVisibleSelectionRect(window);
@@ -78,8 +76,8 @@ export default class Toolbar extends Component {
         {this.props.buttons.map((Button, index) => (
           <Button
             key={index}
-            getEditorState={this.getEditorState}
-            setEditorState={this.setEditorState}
+            getEditorState={getItem('getEditorState')}
+            setEditorState={getItem('setEditorState')}
             getEditorRef={getItem('getEditorRef')}
             isVisible={isVisible}
             forceVisible={() => {
