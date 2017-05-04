@@ -94,7 +94,7 @@ export default class Button extends Component {
             [buttonStyles.active]: isActive,
           })}
           onMouseDown={this.openInput}
-          data-name="超鏈結"
+          data-name="超連結"
         >
           <HyperLink
             className={classNames(buttonStyles.svg, {

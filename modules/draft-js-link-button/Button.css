@@ -54,9 +54,12 @@
   cursor: pointer;
 }
 
-.xWrap:hover svg,
 .checkWrap:hover svg {
   fill: #2b98f0;
+}
+
+.xWrap:hover svg {
+  fill: #aaa;
 }
 
 .x,
