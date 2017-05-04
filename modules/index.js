@@ -1,4 +1,3 @@
-export default from './susu-text-editor';
 export * as Blocks from './draft-js-blocks';
 export * as Buttons from './draft-js-buttons';
 export * as ColorButton from './draft-js-color-button';
