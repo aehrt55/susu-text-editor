@@ -1,5 +1,6 @@
 .toolbar {
   transform: scale(0);
+  visibility: hidden;
   position: absolute;
   background-color: #3E3E3E;
   border-radius: 3px;
