@@ -30,6 +30,7 @@
 
 .input {
   flex: 1 1 auto;
+  width: calc(100% - 80px);
   height: 100%;
   box-sizing: border-box;
   margin: 0;
@@ -46,8 +47,9 @@
 
 .xWrap,
 .checkWrap {
-  width: 40px;
-  height: 40px;
+  flex-shrink: 0;
+  flex-basis: 40px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
